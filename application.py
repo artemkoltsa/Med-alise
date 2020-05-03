@@ -58,13 +58,13 @@ def handle_dialog(req, res):
 
         sessionStorage[user_id] = {
             'suggests': [
-                "Не хочу.",
-                "Не буду.",
+                "Высокая температура",
+                "Болит голова",
                 "Отстань!",
             ]
         }
 
-        res['response']['text'] = 'Привет! Купи слона!'
+        res['response']['text'] = 'Здравствуйте! Это навык первая помоощь от Алисы. Чем могу я вам помочь?'
         res['response']['buttons'] = get_suggests(user_id)
         return
 
