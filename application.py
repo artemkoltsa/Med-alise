@@ -60,7 +60,8 @@ def handle_dialog(req, res):
             'suggests': [
                 "Я чувствую жар",
                 "Мне жарко",
-                "Отстань!",
+                "У меня температура",
+                "Меня знобит",
             ]
         }
 
@@ -72,16 +73,21 @@ def handle_dialog(req, res):
     if req['request']['original_utterance'].lower() in [
         'Нет, спасибо',
         'Нет',
+        'Пока',
     ]:
         # Пользователь согласился, прощаемся.
         res['response']['text'] = 'Спасибо, что обратились ко мне за первой помощью!'
         return
 
-    # Если нет, то убеждаем его купить слона!
-    res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
-        req['request']['original_utterance']
-    )
+    res['response']['text'] = 'Все говорят "%s", а ты купи слона!'
     res['response']['buttons'] = get_suggests(user_id)
+
+
+    # Если нет, то убеждаем его купить слона!
+    # res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
+    #     req['request']['original_utterance']
+    # )
+    # res['response']['buttons'] = get_suggests(user_id)
 
 # Функция возвращает две подсказки для ответа.
 def get_suggests(user_id):
