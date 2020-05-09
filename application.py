@@ -71,9 +71,9 @@ def handle_dialog(req, res):
 
     # Обрабатываем ответ пользователя.
     if req['request']['original_utterance'].lower() in [
-        'Нет, спасибо',
         'Нет',
         'Пока',
+        'Нет, спасибо',
     ]:
         # Пользователь согласился, прощаемся.
         res['response']['text'] = 'Спасибо, что обратились ко мне за первой помощью!'
@@ -107,7 +107,7 @@ def get_suggests(user_id):
     # со ссылкой на Яндекс.Маркет.
     if len(suggests) < 2:
         suggests.append({
-            "title": "Ладно",
+            "title": "Нет",
             "url": "https://market.yandex.ru/search?text=слон",
             "hide": True
         })
