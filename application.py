@@ -71,7 +71,6 @@ def handle_dialog(req, res):
 
     # Обрабатываем ответ пользователя.
     if req['request']['original_utterance'].lower() in [
-        "тон",
         'Нет, спасибо',
         'Нет',
         'Пока',
