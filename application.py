@@ -1,3 +1,10 @@
+# from flask import Flask
+# app = Flask(__name__)
+
+# @app.route("/")
+# def hello():
+#     return "Hello World!"
+
 # coding: utf-8
 # Импортирует поддержку UTF-8.
 from __future__ import unicode_literals
@@ -51,32 +58,36 @@ def handle_dialog(req, res):
 
         sessionStorage[user_id] = {
             'suggests': [
-                "Не хочу.",
-                "Не буду.",
-                "Отстань!",
+                "Я чувствую жар",
+                "Мне жарко",
+                "У меня температура",
+                "Меня знобит",
             ]
         }
 
-        res['response']['text'] = 'Привет! Купи слона!'
+        res['response']['text'] = 'Здравствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
         res['response']['buttons'] = get_suggests(user_id)
         return
 
     # Обрабатываем ответ пользователя.
     if req['request']['original_utterance'].lower() in [
-        'ладно',
-        'куплю',
-        'покупаю',
-        'хорошо',
+        'Нет',
+        'Пока',
+        'Нет, спасибо',
     ]:
         # Пользователь согласился, прощаемся.
-        res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
+        res['response']['text'] = 'Спасибо, что обратились ко мне за первой помощью!'
         return
 
-    # Если нет, то убеждаем его купить слона!
-    res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
-        req['request']['original_utterance']
-    )
+    res['response']['text'] = 'Все говорят "%s", а ты купи слона!'
     res['response']['buttons'] = get_suggests(user_id)
+
+
+    # Если нет, то убеждаем его купить слона!
+    # res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
+    #     req['request']['original_utterance']
+    # )
+    # res['response']['buttons'] = get_suggests(user_id)
 
 # Функция возвращает две подсказки для ответа.
 def get_suggests(user_id):
