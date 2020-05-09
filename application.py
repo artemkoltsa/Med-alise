@@ -49,13 +49,13 @@ def handle_dialog(req, res):
         # Это новый пользователь.
         # Инициализируем сессию и поприветствуем его.
 
-        sessionStorage[user_id] = {
-            'suggests': [
-                "Не хочу.",
-                "Не буду.",
-                "Отстань!",
-            ]
-        }
+        # sessionStorage[user_id] = {
+        #     'suggests': [
+        #         "Не хочу.",
+        #         "Не буду.",
+        #         "Отстань!",
+        #     ]
+        # }
 
         res['response']['text'] = 'Здравствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
         res['response']['buttons'] = [
@@ -78,10 +78,16 @@ def handle_dialog(req, res):
         return
 
     # Если нет, то убеждаем его купить слона!
-    res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
-        req['request']['original_utterance']
-    )
-    res['response']['buttons'] = get_suggests(user_id)
+    res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: "36,6".'
+    if req['request']['original_utterance'].lower() > 37:
+        # Пользователь согласился, прощаемся.
+        res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
+
+
+    # res['response']['buttons'] = get_suggests(user_id)
+
+def temp(user_id):
+
 
 # Функция возвращает две подсказки для ответа.
 def get_suggests(user_id):
