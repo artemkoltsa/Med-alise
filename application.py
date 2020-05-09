@@ -78,8 +78,15 @@ def handle_dialog(req, res):
         return
 
     # Если нет, то убеждаем его купить слона!
-    res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: "36,6".'
+    res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
+        req['request']['original_utterance']
+    )
     res['response']['buttons'] = get_suggests(user_id)
+
+
+    # # Если нет, то убеждаем его купить слона!
+    # res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: "36,6".'
+    # res['response']['buttons'] = get_suggests(user_id)
     # if req['request']['original_utterance'].lower() > 37:
     #     # Пользователь согласился, прощаемся.
     #     res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
