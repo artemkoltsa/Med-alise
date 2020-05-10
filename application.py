@@ -64,7 +64,7 @@ def handle_dialog(req, res):
                 "У меня температура",
                 "Меня знобит",
             ]
-        # return
+        return
 
     # Обрабатываем ответ пользователя.
     if req['request']['original_utterance'].lower() in [
