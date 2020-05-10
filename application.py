@@ -61,8 +61,6 @@ def handle_dialog(req, res):
         res['response']['buttons'] = [
                 "Я чувствую жар",
                 "Мне жарко",
-                "У меня температура",
-                "Меня знобит",
             ]
         return
 
