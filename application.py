@@ -49,29 +49,24 @@ def handle_dialog(req, res):
         # Это новый пользователь.
         # Инициализируем сессию и поприветствуем его.
 
-        # sessionStorage[user_id] = {
-        #     'suggests': [
-        #         "Не хочу.",
-        #         "Не буду.",
-        #         "Отстань!",
-        #     ]
-        # }
-
-        res['response']['text'] = 'Здравствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
-        res['response']['buttons'] = [
-                "Я чувствую жар",
-                "Мне жарко",
-                "У меня температура",
-                "Меня знобит",
+        sessionStorage[user_id] = {
+            'suggests': [
+                "Не хочу.",
+                "Не буду.",
+                "Отстань!",
             ]
+        }
+
+        res['response']['text'] = 'Привет! Купи слона!'
+        res['response']['buttons'] = get_suggests(user_id)
         return
 
     # Обрабатываем ответ пользователя.
     if req['request']['original_utterance'].lower() in [
-        'нет',
-        'нет, спасибо',
-        'до свидания',
-        'пока',
+        'ладно',
+        'куплю',
+        'покупаю',
+        'хорошо',
     ]:
         # Пользователь согласился, прощаемся.
         res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
@@ -82,20 +77,6 @@ def handle_dialog(req, res):
         req['request']['original_utterance']
     )
     res['response']['buttons'] = get_suggests(user_id)
-
-
-    # # Если нет, то убеждаем его купить слона!
-    # res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: "36,6".'
-    # res['response']['buttons'] = get_suggests(user_id)
-    # if req['request']['original_utterance'].lower() > 37:
-    #     # Пользователь согласился, прощаемся.
-    #     res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
-
-
-    # res['response']['buttons'] = get_suggests(user_id)
-#
-# def temp(user_id):
-
 
 # Функция возвращает две подсказки для ответа.
 def get_suggests(user_id):
