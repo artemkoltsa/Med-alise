@@ -31,6 +31,21 @@ choice_buttons = [  # кнопки действий
     }
 ]
 
+temp_buttons = [  # кнопки действий
+    {
+        'title': 'Если до 37,0',
+        'hide': True
+    },
+    {
+        'title': 'Если от 37,0 до 38,5',
+        'hide': True
+    },
+    {
+        'title': 'Если больше 38,5',
+        'hide': True
+    }
+]
+
 # Задаем параметры приложения Flask.
 @app.route("/", methods=['POST'])
 
@@ -80,6 +95,11 @@ def handle_dialog(req, res):
     if req['request']['original_utterance'] == 'нет':
         res['response']['text'] = 'Спасибо, что обратились ко мне за первой помощью!'
         res['response']['end_session'] = True
+        return
+
+    if req['request']['original_utterance'] == ['я чувствую жар', 'мне жарко']:
+        res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: "36,6".'
+        res['response']['buttons'] = temp_buttons
         return
     # Обрабатываем ответ пользователя.
     # if req['request']['original_utterance'].lower() in [
