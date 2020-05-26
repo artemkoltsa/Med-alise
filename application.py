@@ -16,6 +16,21 @@ logging.basicConfig(level=logging.DEBUG)
 # Хранилище данных о сессиях.
 sessionStorage = {}
 
+choice_buttons = [  # кнопки действий
+    {
+        'title': 'Нет',
+        'hide': True
+    },
+    {
+        'title': 'Я чувствую жар',
+        'hide': True
+    },
+    {
+        'title': 'Мне жарко',
+        'hide': True
+    }
+]
+
 # Задаем параметры приложения Flask.
 @app.route("/", methods=['POST'])
 
@@ -59,11 +74,12 @@ def handle_dialog(req, res):
         no_no = [ {'title': "Нет", 'hide': True} ]
 
         res['response']['text'] = 'ствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
-        if res['response']['buttons'] == no(user_id):
-            res['response']['end_session'] = True
+        res['response']['buttons'] == choice_buttons
         return
 
-
+    if req['request']['original_utterance'] == 'Нет':
+        res['response']['text'] = 'Спасибо, что обратились ко мне за первой помощью!'
+        res['response']['end_session'] = True
     # Обрабатываем ответ пользователя.
     if req['request']['original_utterance'].lower() in [
         'нет',
