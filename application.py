@@ -77,19 +77,20 @@ def handle_dialog(req, res):
         res['response']['buttons'] = choice_buttons
         return
 
-    if req['request']['original_utterance'] == 'Нет':
+    if req['request']['original_utterance'] == 'нет':
         res['response']['text'] = 'Спасибо, что обратились ко мне за первой помощью!'
         res['response']['end_session'] = True
-    # Обрабатываем ответ пользователя.
-    if req['request']['original_utterance'].lower() in [
-        'нет',
-        'нет, спасибо',
-        'до свидания',
-        'пока',
-    ]:
-        # Пользователь согласился, прощаемся.
-        res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
         return
+    # Обрабатываем ответ пользователя.
+    # if req['request']['original_utterance'].lower() in [
+    #     'нет',
+    #     'нет, спасибо',
+    #     'до свидания',
+    #     'пока',
+    # ]:
+    #     # Пользователь согласился, прощаемся.
+    #     res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
+    #     return
 
     # Если нет, то убеждаем его купить слона!
     res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: "36,6".'
