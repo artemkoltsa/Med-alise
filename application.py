@@ -88,7 +88,7 @@ def handle_dialog(req, res):
 
         no_no = [ {'title': "Нет", 'hide': True} ]
 
-        res['response']['text'] = 'твуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
+        res['response']['text'] = 'т, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
         res['response']['buttons'] = choice_buttons
         return
 
@@ -117,7 +117,7 @@ def handle_dialog(req, res):
     res['response']['buttons'] = get_suggests(user_id)
 
     # Пользователь согласился, прощаемся.
-    res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
+    # res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
 
 
     # res['response']['buttons'] = get_suggests(user_id)
