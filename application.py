@@ -31,7 +31,7 @@ def main():
         }
     }
 
-    run_script(request.json, response)
+    handle_dialog(request.json, response)
 
     logging.info('Response: %r', response)
 
