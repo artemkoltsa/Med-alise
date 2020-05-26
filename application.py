@@ -56,11 +56,9 @@ def handle_dialog(req, res):
             ]
         }
 
-        # no[user_id] = 'Нет'
-
 
         res['response']['text'] = 'Здравствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
-        res['response']['buttons'] = get_suggests(user_id)
+        res['response']['buttons'] = {'title': "Нет", 'hide': True}
         return
 
     # Обрабатываем ответ пользователя.
