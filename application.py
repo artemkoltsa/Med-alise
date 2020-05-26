@@ -56,9 +56,10 @@ def handle_dialog(req, res):
             ]
         }
 
+        no_no = [ {'title': "Нет", 'hide': True} ]
 
-        res['response']['text'] = 'Завствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
-        res['response']['buttons'] = [ {'title': "Нет", 'hide': True} ]
+        res['response']['text'] = 'Звствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
+        res['response']['buttons'] = no(user_id)
         return
 
     # Обрабатываем ответ пользователя.
@@ -83,8 +84,9 @@ def handle_dialog(req, res):
     # res['response']['buttons'] = get_suggests(user_id)
 #
 # def temp(user_id):
-
-
+def no(user_id):
+    no_no = [{'title': "Нет", 'hide': True}]
+    return no_no
 # Функция возвращает две подсказки для ответа.
 def get_suggests(user_id):
     session = sessionStorage[user_id]
