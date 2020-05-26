@@ -48,7 +48,6 @@ def handle_dialog(req, res):
     if req['session']['new']:
         # Это новый пользователь.
         # Инициализируем сессию и поприветствуем его.
-
         sessionStorage[user_id] = {
             'suggests': [
                 "Не хочу.",
@@ -57,8 +56,11 @@ def handle_dialog(req, res):
             ]
         }
 
+        no[user_id] = 'Нет'
+
+
         res['response']['text'] = 'Здравствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
-        res['response']['buttons'] = get_suggests(user_id)
+        res['response']['buttons'] = no[user_id]
         return
 
     # Обрабатываем ответ пользователя.
