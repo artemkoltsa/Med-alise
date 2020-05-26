@@ -58,7 +58,7 @@ def handle_dialog(req, res):
 
 
         res['response']['text'] = 'Завствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
-        res['response']['buttons'] = {'title': "Нет", 'hide': True}
+        res['response']['buttons'] =
         return
 
     # Обрабатываем ответ пользователя.
