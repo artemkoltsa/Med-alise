@@ -58,10 +58,11 @@ def handle_dialog(req, res):
 
         no_no = [ {'title': "Нет", 'hide': True} ]
 
-        res['response']['text'] = 'вствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
-        res['response']['buttons'] = no(user_id)
-        res['response']['end_session'] = True
+        res['response']['text'] = 'ствуйте, это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
+        if res['response']['buttons'] == no(user_id):
+            res['response']['end_session'] = True
         return
+
 
     # Обрабатываем ответ пользователя.
     if req['request']['original_utterance'].lower() in [
