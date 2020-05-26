@@ -88,17 +88,18 @@ def handle_dialog(req, res):
 
         no_no = [ {'title': "Нет", 'hide': True} ]
 
-        res['response']['text'] = 'это первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
+        res['response']['text'] = 'то первая медицинская помощь от Алисы. Я объясню Вам принципы оказания первой помощи. Чем я могу Вам помочь?'
         res['response']['buttons'] = choice_buttons
         return
 
     if req['request']['original_utterance'] == 'Нет':
         res['response']['text'] = 'Спасибо, что обратились ко мне за первой помощью!'
         res['response']['end_session'] = True
+
         return
 
     if req['request']['original_utterance'] == ['Я чувствую жар', 'Мне жарко']:
-        res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: "36,6".'
+        res['response']['text'] = 'Померьте температуру и напишите в градусах Цельсия через запятую. Пример: 36,6.'
         res['response']['buttons'] = temp_buttons
         return
     # Обрабатываем ответ пользователя.
