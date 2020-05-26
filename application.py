@@ -1,5 +1,8 @@
+import logging
 from alice_scripts import Skill, request, say, suggest
 skill = Skill(__name__)
+
+logging.basicConfig(level=logging.DEBUG)
 
 @skill.script
 def run_script():
